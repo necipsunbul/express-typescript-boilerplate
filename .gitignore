@@ -6,7 +6,7 @@ src/public/images/*
 src/public/uploads/*
 .idea
 .env
-.env.development
+.env.dev
 yarn-error.log
 yarn.lock
 package-lock.json
