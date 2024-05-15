@@ -3,6 +3,8 @@ import morgan from "morgan";
 import routes from "../routes/index.routes";
 import helmet from "helmet";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import swaggerOptions from "../docs/swagger-output.json"
 import FileUpload from "express-fileupload";
 import FileUploadConfig from "../../core/config/uploaderConfig";
 import BaseApplicationLoader from "../../core/base/BaseApplicationLoader";
@@ -24,6 +26,7 @@ export default class LoadFeatures extends BaseApplicationLoader{
         this.app.use(cors(corsOptions));
         if (process.env.NODE_ENV === ApplicationMode.dev) this.app.use(morgan("dev"));
         this.app.use(FileUpload(FileUploadConfig));
+        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
         this.app.use(routes);
     }
 }
