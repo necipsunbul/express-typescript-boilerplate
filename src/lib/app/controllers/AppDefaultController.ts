@@ -7,7 +7,10 @@ import SuccessResponse from "../../core/response/SuccessResponse";
 class AppDefaultController  {
     index(req:Request,res:Response,next:NextFunction){
         try{
-            const responseBody = new DefaultApiResponseEntity(AppDefaultControllerKeys.index.version,AppDefaultControllerKeys.index.status);
+            const responseBody = new DefaultApiResponseEntity(
+                AppDefaultControllerKeys.index.version,
+                AppDefaultControllerKeys.index.status
+            );
             const response = new SuccessResponse<DefaultApiResponseEntity>(responseBody);
             res.status(HttpStatus.OK).json(response);
         }catch (e) {
