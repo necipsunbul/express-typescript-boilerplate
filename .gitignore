@@ -1,0 +1,14 @@
+.vscode/
+coverage
+dist
+node_modules
+src/public/images/*
+src/public/uploads/*
+.idea
+.env
+.env.development
+yarn-error.log
+yarn.lock
+package-lock.json
+.DS_Store
+jest.config.js
