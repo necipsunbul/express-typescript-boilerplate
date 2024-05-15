@@ -24,9 +24,11 @@ export default class LoadFeatures extends BaseApplicationLoader{
         this.app.use(express.urlencoded({ extended: true }));
         this.app.use("/static", express.static("public"));
         this.app.use(cors(corsOptions));
-        if (process.env.NODE_ENV === ApplicationMode.dev) this.app.use(morgan("dev"));
         this.app.use(FileUpload(FileUploadConfig));
-        this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
+        if (process.env.NODE_ENV === ApplicationMode.dev) {
+            this.app.use(morgan("dev"));
+            this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerOptions));
+        }
         this.app.use(routes);
     }
 }
