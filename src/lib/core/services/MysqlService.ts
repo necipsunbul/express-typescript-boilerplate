@@ -1,3 +1,3 @@
-import BaseService from "../base/BaseService";
+import BaseDbService from "../base/BaseDbService";
 
-export default class MysqlService extends BaseService{}
+export default class MysqlService extends BaseDbService{}

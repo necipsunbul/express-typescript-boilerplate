@@ -1,8 +1,8 @@
 import {Model, Types, UpdateQuery} from "mongoose";
 import BaseEntityModel from "../base/BaseEntityModel";
-import BaseService from "../base/BaseService";
+import BaseDbService from "../base/BaseDbService";
 
-export default class BaseMongoService<T extends Model<any>, M extends BaseEntityModel> extends BaseService {
+export default class BaseMongoService<T extends Model<any>, M extends BaseEntityModel> extends BaseDbService {
     constructor(private readonly model: T) {
         super();
     }
