@@ -1,4 +1,4 @@
-import {FilterQuery, Model, ProjectionType, Types, UpdateQuery} from "mongoose";
+import {AggregateOptions, FilterQuery, Model, PipelineStage, ProjectionType, Types, UpdateQuery} from "mongoose";
 import BaseEntityModel from "../base/BaseEntityModel";
 import BaseDbService from "../base/BaseDbService";
 import ErrorMessageConstants from "../contants/ErrorMessageContants";
@@ -34,6 +34,11 @@ export default class BaseMongoService<T extends Model<any>, M extends BaseEntity
     updateMany(condition:FilterQuery<any> = {}, data: UpdateQuery<M>) {
         return this.model.updateMany(condition, data);
     }
+
+    aggregate(stages:PipelineStage[],options:AggregateOptions){
+        return this.model.aggregate(stages,options);
+    }
+
     protected  isObjectId(id:any) : boolean{
         return Types.ObjectId.isValid(id);
     }
