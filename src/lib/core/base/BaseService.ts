@@ -2,15 +2,15 @@ import BaseDbService from "./BaseDbService";
 import BaseEntityModel from "./BaseEntityModel";
 
 export default abstract class BaseService{
-    abstract repo: BaseDbService;
-    errorServiceCallback<T>(message?:string,data?: T){
+    protected abstract repo: BaseDbService;
+    protected errorServiceCallback<T>(message?:string,data?: T){
         return new ServiceResponseEntity<T>({
             success:false,
             message: message,
             data:data
         });
     }
-    successServiceCallback<T>(data?:T){
+    protected successServiceCallback<T>(data?:T){
         return new ServiceResponseEntity<T>({
             success:true,
             data:data
