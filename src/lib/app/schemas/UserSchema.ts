@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import { Schema, model, Document } from "mongoose";
 import AuditSchema from "./AuditSchema";
 import AuditEntityModel from "../entities/database/AuditEntityModel";
-import AppError from "../../core/error/AppError";
+import AppError, {IAppErrorCodes} from "../../core/error/AppError";
 
 export interface IUser extends Document {
     name: String;
@@ -64,11 +64,11 @@ const userSchema: Schema<IUser> = new Schema<IUser>(
 );
 userSchema.post("save", { errorHandler: true }, (error: any, doc, next) => {
     if (error.name === "MongoServerError" && error.code === 11000) {
-        const error_ = new AppError(
-            "Email address is used by another user",
-            httpStatus.BAD_REQUEST,
-            error.code
-        );
+        const codes :IAppErrorCodes ={
+            errorCode:error.code,
+            httpStatus:httpStatus.BAD_REQUEST
+        };
+        const error_ = new AppError("Email address is used by another user",codes);
         next(error_);
     } else {
         next(error);
