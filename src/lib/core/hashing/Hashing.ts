@@ -2,9 +2,9 @@ import bcrypt from "bcrypt";
 import crypto from "crypto-js";
 
 export default class Hashing {
-    private _instance?:Hashing;
+    private static _instance?:Hashing;
     private constructor() {}
-    public get instance() : Hashing {
+    public static get instance() : Hashing {
         if(!this._instance) this._instance = new Hashing();
         return this._instance;
     }
