@@ -1,7 +1,7 @@
 import * as socketio from "socket.io";
 import * as http from "http";
 import BaseSocketInterface from "../base/BaseSocket";
-import SocketEvents from "../../app/socket_events";
+import ChatMessageEvent from "../../app/socket_events/ChatMessageEvent";
 
 class SocketBuilder {
     public io: socketio.Server;
@@ -22,29 +22,28 @@ class SocketBuilder {
             })
             .on("connection", (socket: socketio.Socket) => {
                 console.log("a user connected", socket.id);
-                this.loadEvents(socket);
+                this.loadEvents();
                 this.events.forEach((item) => item.on());
 
                 socket.on("disconnect", () => {
                     this.events.forEach((item) => item.disconnect());
-                    this.disConnectProcess(socket).then(() => null);
+                    this.disconnectProcess(socket).then(() => null);
                 });
             });
     }
 
-    private loadEvents(socket: socketio.Socket) {
-        for (const event of SocketEvents) {
-            const e = new event(socket, this.io);
-            this.events.push(e);
-        }
+    private loadEvents() {
+        this.events = [
+            new ChatMessageEvent(this.io)
+        ]
     }
 
-    private async connectProcess(socket: socketio.Socket): Promise<Boolean> {
+    private async connectProcess(socket?: socketio.Socket): Promise<Boolean> {
         //  cache process
         return true;
     }
 
-    private async disConnectProcess(socket: socketio.Socket) {
+    private async disconnectProcess(socket?: socketio.Socket) {
         //  unCache client process
     }
 }
