@@ -6,22 +6,24 @@ export enum ChatMessageType {
 }
 
 class SendChatMessageEvent extends BaseSocketInterface {
-     io: Server;
+    io: Server;
+    socket: Socket;
     eventName: ChatMessageType = ChatMessageType.EVENT_NAME;
-    constructor( io: Server) {
+    constructor(socket: Socket, io: Server) {
         super();
+        this.socket = socket;
         this.io = io;
     }
 
     public on(): void {
-        this.io.on(this.eventName, (message) => {
+        this.socket.on(this.eventName, (message) => {
             console.log(this.eventName, message);
         });
     }
 
     public disconnect(): void {
         // user chat event disconnet processs
-        console.log("message event disconnect");
+        console.log("message event disconnect", this.socket.id);
     }
 }
 
