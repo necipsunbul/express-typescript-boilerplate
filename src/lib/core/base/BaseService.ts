@@ -1,5 +1,4 @@
 import BaseDbService from "./BaseDbService";
-import BaseEntityModel from "./BaseEntityModel";
 export default abstract class BaseService{
     protected abstract repo: BaseDbService;
     protected errorServiceCallback<T>(error?:Error,data?: T){
@@ -18,13 +17,13 @@ export default abstract class BaseService{
     }
 }
 
-export class ServiceResponseEntity<T> extends BaseEntityModel{
+export class ServiceResponseEntity<T>{
     message?:string;
     success?:boolean;
     error? : Error;
     data?:  T;
     constructor( body: IServiceResponseEntityBody<T> ) {
-        super();
+
         this.message = body.message;
         this.success = body.success;
         this.data = body.data;

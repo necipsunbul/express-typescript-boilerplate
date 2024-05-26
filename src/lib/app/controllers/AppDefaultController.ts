@@ -1,17 +1,17 @@
 import {NextFunction,Response,Request} from "express";
 import HttpStatus from "http-status";
-import DefaultApiResponseEntity from "../entities/response/appDefault/DefaultApiResponseEntity";
+import DefaultApiResponseDTO from "../dtos/response/DefaultApiResponseDTO";
 import SuccessResponse from "../../core/response/SuccessResponse";
 
 
 class AppDefaultController  {
     index(req:Request,res:Response,next:NextFunction){
         try{
-            const responseBody = new DefaultApiResponseEntity(
+            const responseBody = new DefaultApiResponseDTO(
                 AppDefaultControllerKeys.index.version,
                 AppDefaultControllerKeys.index.status
             );
-            const response = new SuccessResponse<DefaultApiResponseEntity>(responseBody);
+            const response = new SuccessResponse<DefaultApiResponseDTO>(responseBody);
             res.status(HttpStatus.OK).json(response);
         }catch (e) {
             next(e);

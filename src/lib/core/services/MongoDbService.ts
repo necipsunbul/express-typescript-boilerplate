@@ -1,9 +1,8 @@
 import {AggregateOptions, FilterQuery, Model, PipelineStage, ProjectionType, Types, UpdateQuery} from "mongoose";
-import BaseEntityModel from "../base/BaseEntityModel";
 import BaseDbService from "../base/BaseDbService";
 import ErrorMessageConstants from "../contants/ErrorMessageContants";
 
-export default class BaseMongoService<T extends Model<any>, M extends BaseEntityModel> extends BaseDbService {
+export default class BaseMongoService<T extends Model<any>, M> extends BaseDbService {
     constructor(private readonly model: T) {
         super();
     }

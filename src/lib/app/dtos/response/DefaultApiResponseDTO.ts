@@ -1,4 +1,4 @@
-class DefaultApiResponseEntity{
+class DefaultApiResponseDTO {
     version?: string;
     status?: string;
     constructor(version?: string, status?: string) {
@@ -7,4 +7,4 @@ class DefaultApiResponseEntity{
     }
 }
 
-export default DefaultApiResponseEntity;
+export default DefaultApiResponseDTO;

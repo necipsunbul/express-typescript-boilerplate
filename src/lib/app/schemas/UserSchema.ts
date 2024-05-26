@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 import { Schema, model, Document } from "mongoose";
 import AuditSchema from "./AuditSchema";
-import AuditEntityModel from "../entities/database/AuditEntityModel";
+import AuditEntityModel from "../entities/AuditEntity";
 import AppError, {IAppErrorCodes} from "../../core/error/AppError";
 
 export interface IUser extends Document {

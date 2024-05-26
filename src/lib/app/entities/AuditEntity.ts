@@ -1,5 +1,3 @@
-import BaseEntityModel from "../../../core/base/BaseEntityModel";
-
 export interface IAuditEntityBody{
     createdAt?: Date;
     createdBy?: String;
@@ -7,13 +5,12 @@ export interface IAuditEntityBody{
     updatedBy?: String;
 }
 
-export default class AuditEntityModel extends BaseEntityModel{
+export default class AuditEntity{
     createdAt?: Date;
     createdBy?: String;
     updatedAt?: Date;
     updatedBy?: String;
     constructor(body:IAuditEntityBody) {
-        super();
         this.createdAt = body.createdAt;
         this.createdBy = body.createdBy;
         this.updatedAt = body.updatedAt;
