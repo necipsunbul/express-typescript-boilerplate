@@ -19,7 +19,7 @@ class FileManager {
         return path.join(this.getRootPath(), ...folderList);
     }
 
-     createFile(fileName: string, content: any) {
+     createFile(fileName: string, content: Buffer) {
         return new Promise((resolve, reject) => {
             fs.writeFile(fileName, content, (err) => {
                 if (err) reject(err);
