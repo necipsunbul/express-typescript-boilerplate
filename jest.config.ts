@@ -1,6 +1,7 @@
 /** @type {import('ts-jest').JestConfigWithTsJest} */
 module.exports = {
     clearMocks: true,
+    forceExit: true,
     coverageProvider: "v8",
     preset: "ts-jest",
     testEnvironment: "node",
