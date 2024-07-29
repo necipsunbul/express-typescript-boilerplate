@@ -18,7 +18,7 @@ export default class RabbitMqDriver {
 
     async connect() {
         try {
-            if (this.channel !== null && this.brokerConnection !== null) return;
+           // if (this.channel !== null && this.brokerConnection !== null) return;
             this.brokerConnection = await amqp.connect(this.connectionString);
             this.channel = await this.brokerConnection.createChannel();
             return this.brokerConnection;
