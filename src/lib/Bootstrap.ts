@@ -2,7 +2,9 @@ import express, { Express } from "express";
 import Http from "http";
 import LoadFeatures from "./app/loaders/LoadFeatures";
 import SocketBuilder from "./core/socket/SocketBuilder";
+import events from './app/events';
 import {error404, viewError} from "./app/middlewares/ErrorCatchMid";
+import EventLoader from "./app/loaders/EventLoader";
 
 export default class Application{
     app: Express;
@@ -17,6 +19,11 @@ export default class Application{
     public loadFeatures(){
         const loader = new LoadFeatures(this.app);
         loader.build();
+    }
+
+    public async loadQueueEvents(){
+        const eventLoader = new EventLoader(events);
+        await eventLoader.build();
     }
 
     public configureSocket(){

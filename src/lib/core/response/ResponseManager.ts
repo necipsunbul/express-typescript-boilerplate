@@ -1,4 +1,4 @@
-export default class ResponseManager {
+export default class ResponseManager{
     protected message: string;
     protected success?: boolean;
     constructor(message: string) {

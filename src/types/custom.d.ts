@@ -15,3 +15,7 @@ declare global {
         }
     }
 }
+
+export interface IRPCPublisher {
+    requestRPC: <T extends Object>(data: T) => Promise<unknown>;
+}

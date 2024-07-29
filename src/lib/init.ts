@@ -4,6 +4,7 @@ import appConfigs from "./core/config/config";
 const mainF = async () => {
     await appConfigs();
     const app = new Application();
+    await app.loadQueueEvents();
     app.loadFeatures();
     app.configureSocket();
     app.configureCatchingResponseError();

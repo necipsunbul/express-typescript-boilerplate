@@ -1,20 +1,18 @@
 import { RedisClientType, createClient } from "redis";
+import {getRedisConnectionString} from "../../config/redisConfig";
 
 export default class RedisDriver {
     private static instance: RedisDriver;
     public static get getInstance(): RedisDriver {
-        if (!RedisDriver.instance) RedisDriver.instance = new RedisDriver();
-        return RedisDriver.instance;
+        if (!this.instance) this.instance = new RedisDriver();
+        return this.instance;
     }
     client: RedisClientType;
     isReady: boolean = false;
     private constructor() {
-        const { REDIS_PORT, REDIS_USERNAME, REDIS_PASSWORD, REDIS_SERVER } =
-            process.env;
-        const clientOptions = {
-            url: `redis://${REDIS_USERNAME}:${REDIS_PASSWORD}@${REDIS_SERVER}:${REDIS_PORT}`,
-        };
-        this.client = createClient();
+        this.client = createClient({
+            url: getRedisConnectionString(),
+        });
     }
     public async connect(): Promise<RedisClientType> {
         try {
