@@ -20,4 +20,11 @@ export class SocketEventManager {
             });
         });
     }
+
+    handleClosedConnection(io: Server, socket: Socket): void {
+        this.events.forEach((event, eventName) => {
+            event.handleClosed(io, socket)
+            socket.off(eventName, (...args: any[]) => { });
+        });
+    }
 }

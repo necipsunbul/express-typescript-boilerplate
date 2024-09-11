@@ -13,4 +13,8 @@ export default class ChatMessageEvent extends BaseSocketEvent {
         console.log('Message received:', message);
         io.emit('chat message', message);
     }
+
+    handleClosed(io: Server, socket: Socket, ...args: any[]): void {
+        console.log('user chat event dropped:', socket.id, args);
+    }
 }

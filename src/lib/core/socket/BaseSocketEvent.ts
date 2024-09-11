@@ -5,4 +5,5 @@ import {ISocketEvent} from "../../../types/custom";
 export abstract class BaseSocketEvent implements ISocketEvent {
     protected constructor(public name: string) {}
     abstract handle(io: Server, socket: Socket, ...args: any[]): void;
+    abstract handleClosed(io: Server, socket: Socket, ...args: any[]): void;
 }

@@ -23,4 +23,5 @@ export interface IRPCPublisher {
 export interface ISocketEvent {
     name: string;
     handle(io: Server, socket: Socket, ...args: any[]): void;
+    handleClosed(io: Server, socket: Socket, ...args: any[]): void;
 }
