@@ -1,30 +1,16 @@
 import { Socket, Server } from "socket.io";
-import BaseSocketInterface from "../../core/base/BaseSocket";
+import {BaseSocketEvent} from "../../core/socket/BaseSocketEvent";
+import SocketEventKeys from "../constants/socketEventKeys";
 
-export enum ChatMessageType {
-    EVENT_NAME = "message",
-}
 
-class SendChatMessageEvent extends BaseSocketInterface {
-    io: Server;
-    socket: Socket;
-    eventName: ChatMessageType = ChatMessageType.EVENT_NAME;
-    constructor(socket: Socket, io: Server) {
-        super();
-        this.socket = socket;
-        this.io = io;
+
+export default class ChatMessageEvent extends BaseSocketEvent {
+    constructor() {
+        super(SocketEventKeys.RECEIVE_CHAT_MESSAGE);
     }
 
-    public on(): void {
-        this.socket.on(this.eventName, (message) => {
-            console.log(this.eventName, message);
-        });
-    }
-
-    public disconnect(): void {
-        // user chat event disconnet processs
-        console.log("message event disconnect", this.socket.id);
+    handle(io: Server, socket: Socket, message: string): void {
+        console.log('Message received:', message);
+        io.emit('chat message', message);
     }
 }
-
-export default SendChatMessageEvent;

@@ -5,6 +5,8 @@ import SocketBuilder from "./core/socket/SocketBuilder";
 import events from './app/events';
 import {error404, viewError} from "./app/middlewares/ErrorCatchMid";
 import EventLoader from "./app/loaders/EventLoader";
+import {SocketEventManager} from "./core/socket/SocketEventManager";
+import SocketEvents from './app/socket_events'
 
 export default class Application{
     app: Express;
@@ -27,7 +29,8 @@ export default class Application{
     }
 
     public configureSocket(){
-        const socketBuilder = new SocketBuilder(this.server);
+        const eventManager = new SocketEventManager(SocketEvents);
+        const socketBuilder = new SocketBuilder(this.server, eventManager);
         socketBuilder.build();
         this.app.use((req, res, next) => {
             req.event = socketBuilder.io;

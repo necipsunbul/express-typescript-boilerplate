@@ -1,5 +1,5 @@
 import { UploadedFile } from "express-fileupload";
-import { Server } from "socket.io";
+import { Server,Socket } from "socket.io";
 declare global {
     namespace Express {
         export interface Request {
@@ -18,4 +18,9 @@ declare global {
 
 export interface IRPCPublisher {
     requestRPC: <T extends Object>(data: T) => Promise<unknown>;
+}
+
+export interface ISocketEvent {
+    name: string;
+    handle(io: Server, socket: Socket, ...args: any[]): void;
 }

@@ -1,17 +1,19 @@
 import * as socketio from "socket.io";
 import * as http from "http";
-import BaseSocketInterface from "../base/BaseSocket";
-import SocketEvents from "../../app/socket_events";
+import {SocketEventManager} from "./SocketEventManager";
+
 
 class SocketBuilder {
     public io: socketio.Server;
-    public events: BaseSocketInterface[] = [];
-    constructor(server: http.Server) {
+    private eventManager : SocketEventManager
+    constructor(server: http.Server, eventManager:SocketEventManager) {
         this.io = new socketio.Server(server, {
             cors: {
                 origin: "*",
+                methods: ["GET", "POST"]
             },
         });
+        this.eventManager = eventManager;
     }
 
     public build() {
@@ -21,31 +23,20 @@ class SocketBuilder {
                 next();
             })
             .on("connection", (socket: socketio.Socket) => {
-                console.log("a user connected", socket.id);
-                this.loadEvents(socket);
-                this.events.forEach((item) => item.on());
-
-                socket.on("disconnect", () => {
-                    this.events.forEach((item) => item.disconnect());
-                    this.disConnectProcess(socket).then(() => null);
+                this.eventManager.handleConnection(this.io, socket);
+                socket.on("disconnect",  async () => {
+                    await this.disConnectProcess(socket)
                 });
+
             });
     }
 
-    private loadEvents(socket: socketio.Socket) {
-        for (const event of SocketEvents) {
-            const e = new event(socket, this.io);
-            this.events.push(e);
-        }
-    }
-
-    private async connectProcess(socket: socketio.Socket): Promise<Boolean> {
-        //  cache process
-        return true;
+    private async connectProcess(socket: socketio.Socket): Promise<void> {
+        console.log("a user connected", socket.id);
     }
 
     private async disConnectProcess(socket: socketio.Socket) {
-        //  unCache client process
+        console.log("a user disconnected", socket.id);
     }
 }
 

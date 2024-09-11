@@ -1,4 +1,5 @@
 import ChatMessageEvent from "./ChatMessageEvent";
+
 export default [
-    ChatMessageEvent
+    new ChatMessageEvent()
 ];
