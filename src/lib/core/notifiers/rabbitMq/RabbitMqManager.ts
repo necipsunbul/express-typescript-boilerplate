@@ -12,7 +12,8 @@ export default abstract class IRabbitMQConsumer {
     }
 
     async start() {
-        this.connection = await RabbitMqDriver.instance.connect();
+        await RabbitMqDriver.instance.connect();
+        this.connection = RabbitMqDriver.instance.brokerConnection!;
         this.channel = RabbitMqDriver.instance.channel!;
         await this.channel?.assertQueue(this.queue, { durable: false });
         // this.channel?.prefetch(40);

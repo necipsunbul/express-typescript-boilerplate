@@ -16,10 +16,10 @@ export default class RabbitMqClient implements IRPCPublisher {
     }
 
     private async connect() {
-        this.connection = await RabbitMqDriver.instance.connect();
+        await RabbitMqDriver.instance.connect();
+        this.connection = RabbitMqDriver.instance.brokerConnection!;
         this.channel = RabbitMqDriver.instance.channel!;
         this.replyQueue = await this.channel?.assertQueue("", { durable: true });
-
     }
 
     async requestRPC<T extends object>(data: T) {
