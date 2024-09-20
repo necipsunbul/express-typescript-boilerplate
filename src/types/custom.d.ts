@@ -25,3 +25,4 @@ export interface ISocketEvent {
     handle(io: Server, socket: Socket, ...args: any[]): void;
     handleClosed(io: Server, socket: Socket, ...args: any[]): void;
 }
+

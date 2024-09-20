@@ -1,7 +1,7 @@
-import BaseApplicationLoader from "../../core/base/BaseApplicationLoader";
-import IRabbitMQConsumer from "../../core/notifiers/rabbitMq/RabbitMqManager";
+import BaseApplicationLoader from "../../base/BaseApplicationLoader";
+import IRabbitMQConsumer from "./RabbitMqManager";
 
-export default class EventLoader extends BaseApplicationLoader {
+export default class RabbitEventLoader extends BaseApplicationLoader {
     private readonly eventList: IRabbitMQConsumer[];
     constructor(events : IRabbitMQConsumer[]) {
         super();

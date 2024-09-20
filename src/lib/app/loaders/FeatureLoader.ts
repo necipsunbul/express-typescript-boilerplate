@@ -12,7 +12,7 @@ import corsOptions from "../../core/config/corsConfig";
 import {ApplicationMode} from "../../core/contants/SystemContants";
 
 
-export default class LoadFeatures extends BaseApplicationLoader{
+export default class FeatureLoader extends BaseApplicationLoader{
     app: Express;
     constructor(app: Express) {
         super();

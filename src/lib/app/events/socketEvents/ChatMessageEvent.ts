@@ -1,6 +1,6 @@
 import { Socket, Server } from "socket.io";
-import {BaseSocketEvent} from "../../core/socket/BaseSocketEvent";
-import SocketEventKeys from "../constants/socketEventKeys";
+import {BaseSocketEvent} from "../../../core/socket/BaseSocketEvent";
+import SocketEventKeys from "../../constants/socketEventKeys";
 
 
 

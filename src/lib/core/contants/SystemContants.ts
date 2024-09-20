@@ -1,3 +1,5 @@
+export const timeZone = 'Europe/Istanbul';
+
 export enum ApplicationMode{
     dev = 'development',
     production = 'production'

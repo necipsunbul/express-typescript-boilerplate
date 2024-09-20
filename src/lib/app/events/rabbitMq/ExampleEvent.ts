@@ -1,10 +1,10 @@
 import {ConsumeMessage} from "amqplib";
-import IRabbitMQConsumer from "../../core/notifiers/rabbitMq/RabbitMqManager";
-import AppError from "../../core/error/AppError";
+import IRabbitMQConsumer from "../../../core/notifiers/rabbitMq/RabbitMqManager";
+import AppError from "../../../core/error/AppError";
 import httpStatus from "http-status";
-import ErrorResponse from "../../core/response/ErrorResponse";
+import ErrorResponse from "../../../core/response/ErrorResponse";
 
-import {EventKeys} from "../constants/eventConstants";
+import {EventKeys} from "../../constants/eventConstants";
 
 
 export class ExampleEvent extends IRabbitMQConsumer {

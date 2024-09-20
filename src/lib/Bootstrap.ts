@@ -1,12 +1,14 @@
 import express, { Express } from "express";
 import Http from "http";
-import LoadFeatures from "./app/loaders/LoadFeatures";
+import FeatureLoader from "./app/loaders/FeatureLoader";
 import SocketBuilder from "./core/socket/SocketBuilder";
-import events from './app/events';
+import rabbitEvents from './app/events/rabbitMq';
 import {error404, viewError} from "./app/middlewares/ErrorCatchMid";
-import EventLoader from "./app/loaders/EventLoader";
+import RabbitEventLoader from "./core/notifiers/rabbitMq/RabbitEventLoader";
 import {SocketEventManager} from "./core/socket/SocketEventManager";
-import SocketEvents from './app/socket_events'
+import SocketEvents from './app/events/socketEvents'
+import CronEventLoader from "./core/notifiers/cronJobs/CronEventLoader";
+import cronJobs from "./app/events/cronJobs";
 
 export default class Application{
     app: Express;
@@ -19,13 +21,18 @@ export default class Application{
     }
 
     public loadFeatures(){
-        const loader = new LoadFeatures(this.app);
+        const loader = new FeatureLoader(this.app);
         loader.build();
     }
 
     public async loadQueueEvents(){
-        const eventLoader = new EventLoader(events);
+        const eventLoader = new RabbitEventLoader(rabbitEvents);
         await eventLoader.build();
+    }
+
+    public async loadCronEvents(){
+        const cronEventLoader = new CronEventLoader(cronJobs);
+        cronEventLoader.build();
     }
 
     public configureSocket(){
