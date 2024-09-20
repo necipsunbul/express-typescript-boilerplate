@@ -4,11 +4,8 @@ import rabbitMqConnectionString from "../../config/rabbitMqConfig";
 export default class RabbitMqDriver {
     public brokerConnection: Connection | null = null;
     private static _instance?: RabbitMqDriver;
-    private readonly connectionString:string;
     private retryConnectingTime = 5000;
-    private constructor() {
-        this.connectionString = rabbitMqConnectionString();
-    }
+    private constructor() {}
 
     public channel?: Channel | null = null;
 
@@ -17,12 +14,13 @@ export default class RabbitMqDriver {
         return this._instance;
     }
 
-    async connect(): Promise<void> {
+    async connect() : Promise<void> {
         try {
-           // if (this.channel !== null && this.brokerConnection !== null) return;
-            this.brokerConnection = await amqp.connect(this.connectionString,{ heartbeat: 60 });
+            // if (this.brokerConnection && this.channel) return;
+            this.brokerConnection = await amqp.connect(rabbitMqConnectionString(), { heartbeat: 60 });
             this.channel = await this.brokerConnection.createChannel();
             this.brokerConnection.on("close", async (err) => {
+                console.log('closed rabbit mq', Math.random(),err);
                 this.channel = null;
                 this.brokerConnection = null;
                 setTimeout(() => this.connect(), this.retryConnectingTime);
@@ -31,7 +29,9 @@ export default class RabbitMqDriver {
                 console.error("RabbitMQ connection error:", err);
             });
         } catch (e) {
+            console.error("Error connecting to RabbitMQ:", e);
             setTimeout(() => this.connect(), this.retryConnectingTime);
+            //  console.log(e);
         }
     }
 
