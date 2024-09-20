@@ -1,17 +1,17 @@
-import {CronJob} from "cron";
+import {CronJob, CronTime} from "cron";
 import {timeZone} from "../../contants/SystemContants";
 
 export default abstract class IBaseCronEvent {
     abstract start(): void;
 
     protected readonly cronTime: string;
-
+    protected job?: CronJob;
     protected constructor(cronTime: string) {
         this.cronTime = cronTime;
     }
 
     protected build(onTickFunction: Function) {
-        return new CronJob(
+        this.job = new CronJob(
             this.cronTime,
             function (){
                 onTickFunction();
@@ -19,6 +19,15 @@ export default abstract class IBaseCronEvent {
             null,
             false, // start
             timeZone
-        ).start();
+        );
+        this.job.start();
+    }
+
+    protected stop(){
+        this.job?.stop();
+    }
+
+    protected setTime(cronTime:CronTime){
+        this.job?.setTime(cronTime)
     }
 }
