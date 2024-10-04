@@ -2,9 +2,9 @@ import { UploadedFile, FileArray } from "express-fileupload";
 import FileManager from "./FileManager";
 
 class FileUploadManager {
-    private files: FileArray;
+    private readonly files: FileArray;
     private singleFileName?: string;
-    private filePath: string;
+    private readonly filePath: string;
     private allowedExtensions: string[] = [];
     private allowedMimeTypes: string[] = [];
     public error = { message: "", errorCode: 0 };
@@ -51,6 +51,7 @@ class FileUploadManager {
         if (!result) this.setErrorMessage("File Not Allowed");
         return result;
     }
+
     private checkFileCount(): Boolean {
         if (Array.isArray(this.files) && this.files.length > this.maxFileCount) {
             this.setErrorMessage("File Limit Exceeded");
@@ -58,6 +59,7 @@ class FileUploadManager {
         }
         return true;
     }
+
     private removeFiles(): void {
         this.uploadedFiles.forEach((item) => {
             FileManager.instance.removeFileFromServer(
@@ -95,6 +97,7 @@ class FileUploadManager {
             return false;
         }
     }
+
     public async saveSingleFileToServer(field: string): Promise<Boolean> {
         try {
             const file: UploadedFile | UploadedFile[] = this.files[field];
@@ -110,6 +113,7 @@ class FileUploadManager {
             return false;
         }
     }
+
     private moveFile(file: UploadedFile) {
         if (!this.singleFileName) return Promise.reject("Filename is empty");
         const path = this.filePath + "/" + this.singleFileName;

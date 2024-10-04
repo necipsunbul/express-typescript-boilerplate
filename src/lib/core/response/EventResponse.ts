@@ -11,7 +11,7 @@ export default class EventResponse<T> extends ResponseManager{
     }
     toJSON() {
         if(this.error){
-            return Object.assign({},{data: {error:this.error}});
+            return Object.assign({},{data: {error:this.error.props}});
         }
         return Object.assign({},{data: {payload:this.payload}});
     }

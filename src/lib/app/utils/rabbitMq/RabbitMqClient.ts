@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import RabbitMqDriver from "../../../core/notifiers/rabbitMq/RabbitMqDriver";
 import AppError from "../../../core/error/AppError";
 import {IRPCPublisher} from "../../../../types/custom";
-import {noAckStatus} from "../../../core/contants/RabbitMqConstants";
+import {durableStatus, noAckStatus} from "../../../core/contants/RabbitMqConstants";
 
 export default class RabbitMqClient implements IRPCPublisher {
     private connection?: Connection;
@@ -20,7 +20,7 @@ export default class RabbitMqClient implements IRPCPublisher {
         await RabbitMqDriver.instance.connect();
         this.connection = RabbitMqDriver.instance.brokerConnection!;
         this.channel = RabbitMqDriver.instance.channel!;
-        this.replyQueue = await this.channel?.assertQueue("", { durable: true });
+        this.replyQueue = await this.channel?.assertQueue("", { durable: durableStatus });
     }
 
     async requestRPC<T extends object>(data: T) {

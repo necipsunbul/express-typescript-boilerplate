@@ -1,6 +1,6 @@
 import { Channel, ConsumeMessage, Connection } from "amqplib";
 import RabbitMqDriver from "./RabbitMqDriver";
-import {noAckStatus} from "../../contants/RabbitMqConstants";
+import {durableStatus, noAckStatus} from "../../contants/RabbitMqConstants";
 
 export default abstract class IRabbitMQConsumer {
     abstract onRequest(msg: ConsumeMessage | null): Promise<void>;
@@ -18,7 +18,7 @@ export default abstract class IRabbitMQConsumer {
         await RabbitMqDriver.instance.connect();
         this.connection = RabbitMqDriver.instance.brokerConnection!;
         this.channel = RabbitMqDriver.instance.channel!;
-        await this.channel.assertQueue(this.queue, { durable: true });
+        await this.channel.assertQueue(this.queue, { durable: durableStatus });
         await this.channel.prefetch(1);
         await this.channel.consume(this.queue, this.onRequest.bind(this), { noAck: noAckStatus });
 

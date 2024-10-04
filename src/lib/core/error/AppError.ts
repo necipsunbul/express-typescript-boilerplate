@@ -6,6 +6,14 @@ export default class AppError extends Error {
         this.httpStatus = codes?.httpStatus;
         this.errorCode = codes?.errorCode;
     }
+
+    get props(){
+        return {
+            message:this.message,
+            httpStatus:this.httpStatus,
+            errorCode:this.errorCode,
+        }
+    }
 }
 
 export interface IAppErrorCodes{
