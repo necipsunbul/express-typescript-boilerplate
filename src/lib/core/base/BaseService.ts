@@ -1,7 +1,8 @@
 import BaseDbService from "./BaseDbService";
+import AppError from "../error/AppError";
 export default abstract class BaseService{
     protected abstract repo: BaseDbService;
-    protected errorServiceCallback<T>(error?:Error,data?: T){
+    protected errorServiceCallback<T>(error?:AppError,data?: T){
         return new ServiceResponseEntity<T>({
             success:false,
             error: error,
@@ -20,7 +21,7 @@ export default abstract class BaseService{
 export class ServiceResponseEntity<T>{
     message?:string;
     success?:boolean;
-    error? : Error;
+    error? : AppError;
     data?:  T;
     constructor( body: IServiceResponseEntityBody<T> ) {
 
@@ -33,7 +34,7 @@ export class ServiceResponseEntity<T>{
 
 
 export interface IServiceResponseEntityBody<T>{
-    error? : Error
+    error? : AppError
     message?:string;
     success?:boolean;
     data?:  T;
