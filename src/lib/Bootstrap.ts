@@ -52,7 +52,7 @@ export default class Application{
 
     public listen(): void{
         this.server.listen(this.port,() => {
-          //  console.log(`Now listening port ${this.port}`);
+            console.log(`Now listening port ${this.port}`);
         });
     }
 }
