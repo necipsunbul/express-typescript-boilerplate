@@ -17,6 +17,16 @@ export default class PostgresqlService<T extends Model, E> extends BaseDbService
         super();
     }
 
+    private getQueryOptions(condition?: WhereOptions<T["_attributes"]>, props?: PostgresProps<T>) {
+        return {
+            where: condition,
+            order: props?.order,
+            limit: props?.limit,
+            attributes: props?.attributes,
+            include: props?.include,
+        };
+    }
+
     async save(data: E) {
         const transaction = await this.driver.transaction();
         try {
@@ -34,23 +44,11 @@ export default class PostgresqlService<T extends Model, E> extends BaseDbService
     }
 
     findAll(condition?: WhereOptions<T["_attributes"]>, props?: PostgresProps<T>): Promise<T[]> {
-        return this.model.findAll({
-            where: condition,
-            order: props?.order,
-            limit: props?.limit,
-            attributes: props?.attributes,
-            include: props?.include,
-        });
+        return this.model.findAll(this.getQueryOptions(condition, props));
     }
 
     findOne(condition: WhereOptions<T["_attributes"]>, props?: PostgresProps<T>): Promise<T | null> {
-        return this.model.findOne({
-            where: condition,
-            order: props?.order,
-            limit: props?.limit,
-            attributes: props?.attributes,
-            include: props?.include,
-        });
+        return this.model.findOne(this.getQueryOptions(condition, props));
     }
 
     findById(id: string): Promise<T | null> {
