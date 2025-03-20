@@ -1,11 +1,19 @@
 ## Create Module Structure
-- Bütün işlemler şu an kök dizinde bulunan  src klasörü altındaki /lib/app/services klasörü altında olmalı
-- mevcut proje dosyalarına müdahale edilmemeli
-- services klasörü altında belirtilen modüle adında klasör oluşturulmalı ve dosyalar bu klasör altında oluşturulmalı
-- services klasörü içinde ek klasör oluşturulmadan bütün dosyalar services içindek modül adıyla oluşturulan kalsörün kök dizininde olmalı
-- Entity dosyası Entity Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Entity.ts olacak
-- Dto dosyası Dto Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Dto.ts olacak
-- MongoService dosyası MongoDB Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}MongoService.ts olacak
-- RedisService dosyası Redis Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}RedisService.ts olacak
-- Repository dosyası Repository Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Repository.ts olacak
-- Service dosyası Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Service.ts olacak
+- All operations should be under the /lib/app/ folder under the src folder currently in the root directory
+- Create a folder with the module name under the services folder if it doesn't exist.
+- MongoDB or postgresql detail must be specified. If not specified in the prompt, have the user make a selection. And force this.
+- Existing project files should not be modified
+- Only adhere to the properties in the vs-code-ts-snippets.json file.
+- For the database, only create fields in snippet structure files.
+- No method or property that is not in the snippet should be created in the classes inside all created files. If specified, relevant properties will be added.
+- A folder with the name of the specified module should be created under the services folder and files should be created under this folder
+- All files should be in the root directory of the module folder created in services without creating additional folders in the services folder
+- IF MONGO DB is specified, consider this item. Mongo Schema file should be created according to Mongoose Schema Template and if not specified, no property or method given other than the snippet should be added. Create this file under the schemas folder. If you can't find the folder, create it. File Name will be {ModuleName}Schema.ts
+- IF POSTGRES is specified, consider this item. Postgres model file should be created according to Sequelize Model Template and if not specified, no property or method given other than the snippet should be added. Create this file under the models folder. If you can't find the folder, create it. File Name will be {ModuleName}Model.ts
+- Entity file should be created according to Entity Template and if not specified, no property or method given other than the snippet should be added. Create this file under the entities folder. If you can't find the folder, create it. File Name will be {ModuleName}Entity.ts
+- Dto file should be created according to Dto Template and if not specified, no property or method given other than the snippet should be added. Create this file under the dtos folder. If you can't find the folder, create it. File Name will be {ModuleName}Dto.ts
+- IF MONGO DB is specified, consider this item. MongoService file should be created according to MongoDB Service Template and if not specified, no property or method given other than the snippet should be added. File Name will be {ModuleName}MongoService.ts
+- IF POSTGRES is specified, consider this item. PostgresqlService file should be created according to PostgreSQL Service Template and if not specified, no property or method given other than the snippet should be added. File Name will be {ModuleName}PostgresService.ts
+- RedisService file should be created according to Redis Service Template and if not specified, no property or method given other than the snippet should be added. File Name will be {ModuleName}RedisService.ts
+- Repository file should be created according to Repository Template and if not specified, no property or method given other than the snippet should be added. File Name will be {ModuleName}Repository.ts
+- Service file should be created according to Service Template and if not specified, no property or method given other than the snippet should be added. File Name will be {ModuleName}Service.ts
