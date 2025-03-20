@@ -1,5 +1,32 @@
-# express-typescript-boilerplate
+# Express TypeScript Boilerplate Snippets
 
-- created
+This document provides information about the available code snippets in this project. These snippets help you quickly create common code structures in your Express TypeScript application.
 
-![CodeRabbit Pull Request Reviews](https://img.shields.io/coderabbit/prs/github/necipsunbul/express-typescript-boilerplate?utm_source=oss&utm_medium=github&utm_campaign=necipsunbul%2Fexpress-typescript-boilerplate&labelColor=171717&color=FF570A&link=https%3A%2F%2Fcoderabbit.ai&label=CodeRabbit+Reviews)
+## Available Snippets
+
+| Prefix                     | Description                                                  |
+| -------------------------- | ------------------------------------------------------------ |
+| `controller_algonom`       | Express controller template with index method                |
+| `cronevent_algonom`        | Cron event template extending IBaseCronEvent                 |
+| `dto_algonom`              | Data Transfer Object template with interface                 |
+| `entity_algonom`           | Entity class template with interface body                    |
+| `seqmodel_algonom`         | Sequelize model template with UUID primary key               |
+| `mongoservice_algonom`     | MongoDB service class extending BaseMongoService             |
+| `pgservice_algonom`        | PostgreSQL service class extending PostgresqlService         |
+| `rabbitevent_algonom`      | RabbitMQ event consumer class extending IRabbitMQConsumer    |
+| `redisservice_algonom`     | Redis service class extending RedisManager                   |
+| `repository_algonom`       | Repository class extending BaseRepository                    |
+| `service_algonom`          | Service class extending BaseService                          |
+| `socketevent_algonom`      | Socket.io event class extending BaseSocketEvent              |
+| `swaggerdocschema_algonom` | Documentation schema and hook template for API documentation |
+
+## How to Use
+
+1. Open a TypeScript file in VS Code
+2. Type the prefix of the snippet you want to use (e.g., `controller_algonom`)
+3. Press Tab or Enter to expand the snippet
+4. Use Tab to navigate through the placeholder values and customize them according to your needs
+
+## Note
+
+All snippets are prefixed with `_algonom` to avoid conflicts with other snippets. Make sure to replace the placeholder values (like `Name`, `your_table_name`, etc.) with your actual values when using these snippets.
