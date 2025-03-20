@@ -1,0 +1,11 @@
+## Create Module Structure
+- Bütün işlemler şu an kök dizinde bulunan  src klasörü altındaki /lib/app/services klasörü altında olmalı
+- mevcut proje dosyalarına müdahale edilmemeli
+- services klasörü altında belirtilen modüle adında klasör oluşturulmalı ve dosyalar bu klasör altında oluşturulmalı
+- services klasörü içinde ek klasör oluşturulmadan bütün dosyalar services içindek modül adıyla oluşturulan kalsörün kök dizininde olmalı
+- Entity dosyası Entity Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Entity.ts olacak
+- Dto dosyası Dto Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Dto.ts olacak
+- MongoService dosyası MongoDB Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}MongoService.ts olacak
+- RedisService dosyası Redis Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}RedisService.ts olacak
+- Repository dosyası Repository Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Repository.ts olacak
+- Service dosyası Service Template e göre oluşturulmalı ve belirtilmediyse snippet haricinde verilen bir property veya method eklenmemeli. Dosya Adı {ModuleName}Service.ts olacak

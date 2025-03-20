@@ -12,6 +12,7 @@ This document provides information about the available code snippets in this pro
 | `entity_algonom`           | Entity class template with interface body                    |
 | `seqmodel_algonom`         | Sequelize model template with UUID primary key               |
 | `mongoservice_algonom`     | MongoDB service class extending BaseMongoService             |
+| `mongoschema_algonom`      | Mongoose schema template with audit and error handling       |
 | `pgservice_algonom`        | PostgreSQL service class extending PostgresqlService         |
 | `rabbitevent_algonom`      | RabbitMQ event consumer class extending IRabbitMQConsumer    |
 | `redisservice_algonom`     | Redis service class extending RedisManager                   |
