@@ -11,7 +11,7 @@ export default abstract class IRabbitMQConsumer {
   queue: string;
 
   protected constructor(queue: string) {
-    this.queue = queue;
+    this.queue = process.env.RABBITMQ_PREFIX ? `${process.env.RABBITMQ_PREFIX}/${queue}` : queue;
   }
 
   async start() {
