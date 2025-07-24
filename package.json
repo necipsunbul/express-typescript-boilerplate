@@ -8,7 +8,8 @@
     "build": "rimraf dist && tsc",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/index.js",
-    "dev": "concurrently \"npx tsc -w\" \"NODE_ENV=development nodemon dist/index.js\""
+    "dev": "concurrently \"npx tsc -w\" \"NODE_ENV=development nodemon dist/index.js\"",
+    "swagger": "ts-node ./src/swagger.ts"
   },
   "keywords": [],
   "author": "",
