@@ -11,7 +11,7 @@ export default abstract class IRabbitMQConsumer {
   queue: string;
 
   protected constructor(queue: string) {
-    this.queue = process.env.RABBITMQ_PREFIX ? `${process.env.RABBITMQ_PREFIX}/${queue}` : queue;
+    this.queue = IRabbitMQConsumer.manageTopicName(queue);
   }
 
   async start() {
@@ -29,5 +29,9 @@ export default abstract class IRabbitMQConsumer {
         correlationId: msg.properties.correlationId,
       });
     }
+  }
+
+  public static manageTopicName(topic: string) {
+    return process.env.RABBITMQ_PREFIX ? `${process.env.RABBITMQ_PREFIX}/${topic}` : topic;
   }
 }
