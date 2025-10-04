@@ -1,6 +1,6 @@
-import { Router } from "express";
+import { Router } from 'express';
 const router = Router();
-import publicRoutes from "./public.routes";
+import publicRoutes from './public.routes';
 
 router.use('/', publicRoutes);
 

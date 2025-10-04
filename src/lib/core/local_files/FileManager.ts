@@ -42,7 +42,9 @@ class FileManager {
   }
 
   removeFileFromServer(filePath: string) {
-    if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
+    if (fs.existsSync(filePath)) {
+      fs.unlinkSync(filePath);
+    }
   }
 
   getFileExtension(fileName: string) {
