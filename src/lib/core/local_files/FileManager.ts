@@ -48,6 +48,15 @@ class FileManager {
   getFileExtension(fileName: string) {
     return path.extname(fileName).replace('.', '');
   }
+
+  writeFile(filePath: string, content: string) {
+    return new Promise((resolve, reject) => {
+      fs.writeFile(filePath, content, (err) => {
+        if (err) reject(err);
+        resolve(true);
+      });
+    });
+  }
 }
 
 export default FileManager;
