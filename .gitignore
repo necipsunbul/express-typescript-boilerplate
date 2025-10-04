@@ -2,8 +2,8 @@
 coverage
 dist
 node_modules
-src/public/images/*
-src/public/uploads/*
+public/images/*
+public/uploads/*
 .idea
 .env
 .env.dev
